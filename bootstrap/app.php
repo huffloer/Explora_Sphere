@@ -16,6 +16,14 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
 
+        $middleware->alias([
+            'admin'=>\App\Http\Middleware\AuthenticateAdmin::class,
+            'regular'=>\App\Http\Middleware\Regular::class,
+            'user'=>\App\Http\Middleware\AuthenticateUser::class,
+            'subscriber'=>\App\Http\Middleware\AuthenticateSubscriber::class,
+            'visit'=>\App\Http\Middleware\LogVisit::class
+        ]);
+
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {

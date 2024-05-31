@@ -9,15 +9,32 @@ export default forwardRef(function TextInput({ type = 'text', className = '', is
         }
     }, []);
 
+    const { textarea, ...otherProps } = props;
     return (
-        <input
-            {...props}
-            type={type}
-            className={
-                'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm ' +
-                className
-            }
-            ref={input}
-        />
+        <>
+        {(textarea) ? (
+            <textarea
+                {...otherProps}
+                type={type}
+                className={
+                    'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm ' +
+                    className
+                }
+                ref={input}
+                cols="100" rows="5"
+            />
+        ) : (
+            <input
+                {...otherProps}
+                type={type}
+                className={
+                    'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm ' +
+                    className
+                }
+                ref={input}
+            />
+        )}
+        </>
+        
     );
 });
